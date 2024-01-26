@@ -54,12 +54,35 @@ export class AppService {
           stderr
         };
       }
-      // pkill --parent 397962
-      console.log("AppService -> awaitexec -> stdout", stdout.split('?')[0])
       
+      console.log("AppService -> awaitexec -> stdout", stdout.split('?')[0])
+
+      exec(`sudo pkill --parent ${stdout.split('?')[0]}`, (error, stdout, stderr) => {
+        if (error) {
+          
+          return {
+            status: 'failed',
+            ip,
+            user
+          };
+        }
+        if (stderr) {
+          console.log(`stderr: ${stderr}`);
+          exec(`telegram-send "StdoutError: ${stderr}"`)
+  
+          return {
+            status: 'failed-stdout',
+            ip,
+            user,
+            stderr
+          };
+        }
+        
+      });
+      console.log("AppService -> exec -> stdout", stdout)
     });
 
-    // exec(`telegram-send "Error blocking the ${ip}"`)
+     
     return {
       status: 'ok',
       ip,
