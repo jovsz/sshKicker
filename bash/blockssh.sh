@@ -12,13 +12,12 @@ if [ -z "$1" ]
     exit 0
 fi
 
-if [ "$#" -ne 1 ]; then
-    echo "You can pass only one argument."
-    exit 0
-fi
 
 
 sudo echo "sshd : $1"  >>  /etc/hosts.deny
 sudo ufw deny from $1
 sudo ufw reload
+sudo echo "DenyUsers $2"  >>  /etc/ssh/sshd_config
 sudo systemctl restart sshd
+sudo systemctl restart ssh
+telegram-send "user: $2 with $1 has been Blocked"
