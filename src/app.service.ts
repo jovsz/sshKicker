@@ -12,10 +12,11 @@ export class AppService {
   }
 
   async kickSSh(ip:string, user: string) {
+    console.log("AppService -> kickSSh -> user", user)
+    let isBlocked: boolean = false
+
     exec(`sudo blockssh ${ip} ${user}`, (error, stdout, stderr) => {
       if (error) {
-        exec(`telegram-send "Error blocking the ${ip}"`)
-
         return {
           status: 'failed',
           ip,
@@ -33,9 +34,14 @@ export class AppService {
           stderr
         };
       }
+      isBlocked=true
+      
     });
 
 
+    console.log("AppService -> exec -> isBlocked", isBlocked)
+
+    // exec(`telegram-send "Error blocking the ${ip}"`)
     return {
       status: 'ok',
       ip,
