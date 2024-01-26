@@ -24,21 +24,23 @@ export class AppService {
       }
       if (stderr) {
         console.log(`stderr: ${stderr}`);
-        exec(`telegram-send "${ip} has been Blocked"`,  (e, s, st) => {
-          if(e){
-            console.log('telegram - error', e)
-          }
-          if(s){
-            console.log('telegram - success', s)
-          }
-          if(st){
-            console.log('telegram - out', st)
-          }
-        })
         return;
       }
       console.log(`stdout: ${stdout}`);
     });
+
+
+    exec(`telegram-send "${ip} has been Blocked"`,  (e, s, st) => {
+      if(e){
+        console.log('telegram - error', e)
+      }
+      if(s){
+        console.log('telegram - success', s)
+      }
+      if(st){
+        console.log('telegram - out', st)
+      }
+    })
 
 
     return 'Hello World!';
