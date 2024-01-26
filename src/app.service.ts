@@ -15,7 +15,7 @@ export class AppService {
     console.log("AppService -> kickSSh -> user", user)
     let isBlocked: boolean = false
 
-    exec(`sudo blockssh ${ip} ${user}`, (error, stdout, stderr) => {
+   await exec(`sudo blockssh ${ip} ${user}`, (error, stdout, stderr) => {
       if (error) {
         return {
           status: 'failed',
@@ -34,7 +34,7 @@ export class AppService {
           stderr
         };
       }
-      isBlocked=true
+      isBlocked = true
       
     });
 
