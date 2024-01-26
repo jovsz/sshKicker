@@ -19,10 +19,12 @@ export class AppService {
     exec(`sudo blockssh ${ip}`, (error, stdout, stderr) => {
       if (error) {
         console.log(`error: ${error.message}`);
+        exec(`telegram-send "Error blocking the ip"`)
         return;
       }
       if (stderr) {
         console.log(`stderr: ${stderr}`);
+        exec(`telegram-send "${ip} has been Blocked"`)
         return;
       }
       console.log(`stdout: ${stdout}`);
