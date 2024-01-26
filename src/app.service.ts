@@ -12,11 +12,11 @@ export class AppService {
     return 'Hello World!';
   }
 
-  async kickSSh(ip:string) {
+  async kickSSh(ip:string, user: string) {
   console.log("AppService -> kickSSh -> ip", ip)
 
 
-    exec(`sudo blockssh ${ip}`, (error, stdout, stderr) => {
+    exec(`sudo blockssh ${ip} ${user}`, (error, stdout, stderr) => {
       if (error) {
         console.log(`error: ${error.message}`);
         exec(`telegram-send "Error blocking the ip"`)
@@ -30,7 +30,7 @@ export class AppService {
     });
 
 
-    exec(`telegram-send "${ip} has been Blocked"`,  (e, s, st) => {
+    exec(`telegram-send "user: ${user} with ${ip} has been Blocked"`,  (e, s, st) => {
       if(e){
         console.log('telegram - error', e)
       }

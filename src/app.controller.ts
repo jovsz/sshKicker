@@ -5,11 +5,12 @@ import { AuthGuard } from './Guard/check_guard';
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
-  @Get('ssh/:key/:ip')
+  @Get('ssh/:key/:ip/:user')
   @UseGuards(AuthGuard)
   getHello(
-    @Param('ip') ip: string
+    @Param('ip') ip: string,
+    @Param('user') user: string,
   ) {
-    return this.appService.kickSSh(ip)
+    return this.appService.kickSSh(ip, user)
   }
 }

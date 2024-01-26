@@ -18,5 +18,7 @@ if [ "$#" -ne 1 ]; then
 fi
 
 
-sudo echo "shd : $1"  >>  /etc/hosts.deny
+sudo echo "sshd : $1"  >>  /etc/hosts.deny
+sudo ufw deny from $1
+sudo ufw reload
 sudo systemctl restart sshd
