@@ -10,6 +10,7 @@ export class AppController {
   getHello(
     @Param('ip') ip: string
   ) {
+    
     return this.appService.kickSSh(ip)
   }
 }
