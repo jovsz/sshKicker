@@ -16,7 +16,7 @@ export class AppService {
   console.log("AppService -> kickSSh -> ip", ip)
 
 
-    exec(`sudo blocksh ${ip}`, (error, stdout, stderr) => {
+    exec(`sudo blockssh ${ip}`, (error, stdout, stderr) => {
       if (error) {
         console.log(`error: ${error.message}`);
         return;
