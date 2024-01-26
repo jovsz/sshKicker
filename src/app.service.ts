@@ -1,5 +1,4 @@
 import { Injectable } from '@nestjs/common';
-import { Command, CommandFactory, CommandRunner, Option } from 'nest-commander';
 const { exec } = require("child_process");
 
 
@@ -13,9 +12,6 @@ export class AppService {
   }
 
   async kickSSh(ip:string, user: string) {
-  console.log("AppService -> kickSSh -> ip", ip)
-
-
     exec(`sudo blockssh ${ip} ${user}`, (error, stdout, stderr) => {
       if (error) {
         console.log(`error: ${error.message}`);
@@ -30,19 +26,6 @@ export class AppService {
     });
 
 
-    exec(`telegram-send "user: ${user} with ${ip} has been Blocked"`,  (e, s, st) => {
-      if(e){
-        console.log('telegram - error', e)
-      }
-      if(s){
-        console.log('telegram - success', s)
-      }
-      if(st){
-        console.log('telegram - out', st)
-      }
-    })
-
-
-    return 'Hello World!';
+    return {};
   }
 }
