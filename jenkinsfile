@@ -16,8 +16,8 @@ pipeline {
             steps {
 
                 echo 'Deploying....'
-                sh 'pm2 start dist/main.js --name ssh-kicker --exp-backoff-restart-delay=100 --trace || true'
-                // sh 'pm2 restart 2 --update-env'
+                // sh 'pm2 start dist/main.js --name ssh-kicker --exp-backoff-restart-delay=100 --trace || true'
+                sh 'pm2 restart 2 --update-env'
             }
         }
     }
