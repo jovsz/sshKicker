@@ -12,12 +12,12 @@ pipeline {
                 echo 'Testing..'
             }
         }
-        stage('Deploy') {
+        stage('Deploy') { 
             steps {
 
                 echo 'Deploying....'
-                sh 'pm2 start dist/main.js --name ssh-kicker --exp-backoff-restart-delay=100 --trace'
-                // sh 'pm2 restart 1 --update-env'
+                // sh 'pm2 start dist/main.js --name ssh-kicker --exp-backoff-restart-delay=100 --trace'
+                sh 'pm2 restart 3 --update-env'
             }
         }
     }
