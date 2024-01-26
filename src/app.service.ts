@@ -55,7 +55,7 @@ export class AppService {
         };
       }
       // pkill --parent 397962
-      console.log("AppService -> awaitexec -> stdout", stdout)
+      console.log("AppService -> awaitexec -> stdout", stdout.split('?')[0])
       
     });
 
