@@ -23,9 +23,7 @@ export class AppService {
         };
       }
       if (stderr) {
-        console.log(`stderr: ${stderr}`);
         exec(`telegram-send "StdoutError: ${stderr}"`)
-
         return {
           status: 'failed-stdout',
           ip,
@@ -44,7 +42,6 @@ export class AppService {
         };
       }
       if (stderr) {
-        console.log(`stderr: ${stderr}`);
         exec(`telegram-send "StdoutError: ${stderr}"`)
 
         return {
@@ -54,8 +51,8 @@ export class AppService {
           stderr
         };
       }
-      console.log("AppService -> awaitexec -> stdout", stdout.split(''))
-      exec(`sudo pkill --parent ${stdout.split('\n').find(e => e.includes('test')).split('?')[0].replace(/\s/g, '')}`);
+      
+      exec(`sudo pkill --parent ${stdout.split('\n').find(e => e.includes(user)).split('?')[0].replace(/\s/g, '')}`);
 
     })
 
