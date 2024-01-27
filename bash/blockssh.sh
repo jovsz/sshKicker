@@ -17,7 +17,4 @@ fi
 sudo echo "sshd : $1"  >>  /etc/hosts.deny
 sudo ufw deny from $1
 sudo ufw reload
-sudo echo "DenyUsers $2"  >>  /etc/ssh/sshd_config
-sudo systemctl restart sshd
-sudo systemctl restart ssh
-telegram-send "user: $2 with $1 has been Blocked"
+sudo systemctl restart sshd ssh
